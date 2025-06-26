@@ -1,0 +1,81 @@
+:root {
+  --primary-color: #4caf50;
+  --body-color: #f4f4f4;
+  --cell-color: white;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--body-color);
+}
+
+.game-container {
+  text-align: center;
+  padding: 80px;
+  border: 1px solid black;
+  border-radius: 20px;
+  background: yellowgreen;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(3, 6.25rem);
+  grid-template-rows: repeat(3, 6.25rem);
+  gap: 0.3125rem;
+  margin-bottom: 1.25rem;
+}
+
+.cell {
+  width: 6.25rem;
+  height: 6.25rem;
+  background-color: var(--cell-color);
+  border: 0.125rem solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cell:hover {
+  background-color: hsl(from var(--cell-color) h s calc(l - 10));
+}
+
+.info p {
+  font-size: 1.2rem;
+  margin-bottom: 0.625rem;
+}
+
+#reset {
+  padding: 0.3125rem 0.9375rem;
+  border-radius: 0.3125rem;
+  font-size: 1rem;
+  background-color: var(--primary-color);
+  color: var(--cell-color);
+  border: none;
+  cursor: pointer;
+}
+
+#reset:hover {
+  background-color: hsl(from var(--primary-color) h s calc(l + 15));
+}
+
+.winning-board {
+  margin-top: 1.25rem;
+}
+
+.winning-board p {
+  font-size: 1rem;
+  font-weight: bold;
+}

@@ -1,0 +1,180 @@
+const canvas = document.getElementById("tetris");
+const ctx = canvas.getContext("2d");
+
+const ROWS = 20;
+const COLUMNS = 10;
+const BLOCK_SIZE = 30;
+const COLORS = ["#FF0", "#0F0", "#00F", "#F00", "#0FF", "#F0F", "#FF7F00"];
+
+const tetrominos = [
+  [[1, 1, 1, 1]],
+  [
+    [1, 1, 1],
+    [0, 1, 0],
+  ],
+  [
+    [0, 1, 1],
+    [1, 1, 0],
+  ],
+  [
+    [1, 1],
+    [1, 1],
+  ],
+  [
+    [1, 1, 0],
+    [0, 1, 1],
+  ],
+  [
+    [0, 1, 0],
+    [1, 1, 1],
+  ],
+  [
+    [1, 0, 0],
+    [1, 1, 1],
+  ],
+];
+
+let board = Array.from({ length: ROWS }, () => Array(COLUMNS).fill(0));
+let currentTetromino = createRandomTetromino();
+let currentX = 3,
+  currentY = 0;
+let gameInterval;
+let score = 0;
+
+function drawBlock(x, y, color) {
+  ctx.fillStyle = color;
+  ctx.fillRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+  ctx.strokeRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+}
+
+function drawBoard() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let y = 0; y < ROWS; y++) {
+    for (let x = 0; x < COLUMNS; x++) {
+      if (board[y][x] !== 0) {
+        drawBlock(x, y, COLORS[board[y][x]]);
+      }
+    }
+  }
+}
+
+function drawTetromino() {
+  for (let y = 0; y < currentTetromino.length; y++) {
+    for (let x = 0; x < currentTetromino[y].length; x++) {
+      if (currentTetromino[y][x] === 1) {
+        drawBlock(currentX + x, currentY + y, COLORS[currentTetromino[y][x]]);
+      }
+    }
+  }
+}
+
+function createRandomTetromino() {
+  const idx = Math.floor(Math.random() * tetrominos.length);
+  return tetrominos[idx];
+}
+
+function moveTetromino() {
+  if (isCollision(currentTetromino, currentX, currentY + 1)) {
+    placeTetromino();
+    clearLines();
+    currentTetromino = createRandomTetromino();
+    currentX = 3;
+    currentY = 0;
+
+    if (isCollision(currentTetromino, currentX, currentY)) {
+      clearInterval(gameInterval);
+      alert("Game Over");
+    }
+  } else {
+    currentY++;
+  }
+}
+
+function placeTetromino() {
+  for (let y = 0; y < currentTetromino.length; y++) {
+    for (let x = 0; x < currentTetromino[y].length; x++) {
+      if (currentTetromino[y][x] === 1) {
+        board[currentY + y][currentX + x] = currentTetromino[y][x];
+      }
+    }
+  }
+}
+
+function clearLines() {
+  for (let y = ROWS - 1; y >= 0; y--) {
+    if (board[y].every((cell) => cell !== 0)) {
+      board.splice(y, 1);
+      board.unshift(Array(COLUMNS).fill(0));
+      score += 10;
+      y++;
+    }
+  }
+}
+
+function isCollision(tetromino, x, y) {
+  for (let ty = 0; ty < tetromino.length; ty++) {
+    for (let tx = 0; tx < tetromino[ty].length; tx++) {
+      if (tetromino[ty][tx] === 1) {
+        const nx = x + tx;
+        const ny = y + ty;
+        if (ny >= ROWS || nx < 0 || nx >= COLUMNS || board[ny][nx] !== 0) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+}
+
+function gameLoop() {
+  moveTetromino();
+  drawBoard();
+  drawTetromino();
+}
+
+function rotateTetromino() {
+  const rotated = currentTetromino[0]
+    .map((_, index) => currentTetromino.map((row) => row[index]))
+    .reverse();
+  if (!isCollision(rotated, currentX, currentY)) {
+    currentTetromino = rotated;
+  }
+}
+
+function moveLeft() {
+  if (!isCollision(currentTetromino, currentX - 1, currentY)) {
+    currentX--;
+  }
+}
+
+function moveRight() {
+  if (!isCollision(currentTetromino, currentX + 1, currentY)) {
+    currentX++;
+  }
+}
+
+function dropTetromino() {
+  if (!isCollision(currentTetromino, currentX, currentY + 1)) {
+    currentY++;
+  } else {
+    placeTetromino();
+    clearLines();
+    currentTetromino = createRandomTetromino();
+    currentX = 3;
+    currentY = 0;
+  }
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft") {
+    moveLeft();
+  } else if (e.key === "ArrowRight") {
+    moveRight();
+  } else if (e.key === "ArrowDown") {
+    dropTetromino();
+  } else if (e.key === "ArrowUp") {
+    rotateTetromino();
+  }
+});
+
+gameInterval = setInterval(gameLoop, 500);

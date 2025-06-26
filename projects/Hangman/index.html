@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hangman Game</title>
+    <link rel="stylesheet" href="style/style.css" />
+  </head>
+  <body>
+    <svg height="250" width="200">
+      <!-- Scaffold -->
+      <line
+        x1="20"
+        y1="230"
+        x2="180"
+        y2="230"
+        stroke="black"
+        stroke-width="4"
+      />
+      <line
+        x1="100"
+        y1="230"
+        x2="100"
+        y2="20"
+        stroke="black"
+        stroke-width="4"
+      />
+      <line x1="100" y1="20" x2="150" y2="20" stroke="black" stroke-width="4" />
+      <line x1="150" y1="20" x2="150" y2="50" stroke="black" stroke-width="4" />
+
+      <!-- Hangman Parts (Initially Hidden) -->
+      <circle
+        cx="150"
+        cy="70"
+        r="20"
+        stroke="black"
+        stroke-width="4"
+        fill="none"
+        class="part"
+        style="display: none"
+      />
+      <line
+        x1="150"
+        y1="90"
+        x2="150"
+        y2="150"
+        stroke="black"
+        stroke-width="4"
+        class="part"
+        style="display: none"
+      />
+      <line
+        x1="150"
+        y1="110"
+        x2="130"
+        y2="130"
+        stroke="black"
+        stroke-width="4"
+        class="part"
+        style="display: none"
+      />
+      <line
+        x1="150"
+        y1="110"
+        x2="170"
+        y2="130"
+        stroke="black"
+        stroke-width="4"
+        class="part"
+        style="display: none"
+      />
+      <line
+        x1="150"
+        y1="150"
+        x2="130"
+        y2="180"
+        stroke="black"
+        stroke-width="4"
+        class="part"
+        style="display: none"
+      />
+      <line
+        x1="150"
+        y1="150"
+        x2="170"
+        y2="180"
+        stroke="black"
+        stroke-width="4"
+        class="part"
+        style="display: none"
+      />
+    </svg>
+
+    <div class="container">
+      <h1>Hangman</h1>
+      <p class="word"></p>
+      <p>Wrong Letters: <span class="wrong-letters"></span></p>
+      <p>Attempts Left: <span class="attempts">6</span></p>
+      <p>Enter a letter:</p>
+      <input type="text" id="letterInput" maxlength="1" />
+      <button onclick="guessLetter()">Guess</button>
+      <p class="message"></p>
+      <button onclick="resetGame()" class="hidden">Restart</button>
+    </div>
+
+    <script src="script/script.js"></script>
+  </body>
+</html>

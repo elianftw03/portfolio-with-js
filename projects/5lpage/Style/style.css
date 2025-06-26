@@ -1,0 +1,143 @@
+:root {
+    --text-color: white;
+    --formcontainer-color: #1A1A1AD4;
+    --subtext-color: #F9F9F9;
+    --submit-color: #D31C75;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: auto;
+    font-family: "Heebo", serif;
+}
+
+.bgimg {
+    height: auto;
+    width: 100%;
+    display: block;
+}
+
+.formcontainer {
+    width: 90%;
+    max-width: 568px;
+    margin: 20px auto;
+    background-color: var(--formcontainer-color);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.formcontainer h1 {
+    color: var(--text-color);
+    font-size: 2.20rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.formcontainer p {
+    color: var(--subtext-color);
+    font-size: 1.25rem;
+    text-align: center;
+    font-weight: lighter;
+    margin-bottom: 20px;
+}
+
+.formcontainer form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-left: 50px;
+}
+
+.formcontainer label {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+.formcontainer input[type="text"],
+input[type="email"] {
+    width: 100%;
+    height: 50px;
+    border: 1px solid var(--submit-color);
+}
+
+.formcontainer input[type="button"] {
+    width: auto;
+    min-width: 140px;
+    height: 50px;
+    font-size: 1.1rem;
+    border: none;
+    background-color: var(--submit-color);
+    color: var(--text-color);
+    align-self: center;
+}
+
+.formcontainer input[type="button"]:hover {
+    cursor: pointer;
+    transition-duration: 300ms;
+    transform: scale(1.05);
+}
+
+@media (min-width: 769px) {
+
+
+    .formcontainer {
+        width: 568px;
+        height: 642px;
+        position: absolute;
+        top: 157px;
+        left: 1056px;
+        margin: 0;
+    }
+
+    .formcontainer h1 {
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+
+    .formcontainer p {
+        margin-bottom: 0;
+    }
+
+    .formcontainer form {
+        margin-top: 50px;
+        gap: 5px;
+    }
+
+    .formcontainer input[type="text"],
+    input[type="email"] {
+        width: 417px;
+    }
+
+    .formcontainer input[type="button"] {
+        align-self: start;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .formcontainer form {
+        margin: 0;
+    }
+    .formcontainer h1 {
+        font-size: 1.8rem;
+    }
+
+    .formcontainer p {
+        font-size: 1rem;
+    }
+
+    .formcontainer input[type="text"],
+    input[type="email"],
+    .formcontainer input[type="button"] {
+        font-size: 1rem;
+    }
+}

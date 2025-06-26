@@ -1,0 +1,30 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #222;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+#board {
+  border: 3px solid white;
+  margin-top: 20px;
+}
+#score {
+  font-size: 20px;
+  margin-top: 10px;
+}
+#status {
+  font-size: 18px;
+  color: red;
+  margin-top: 10px;
+}
+#restart {
+  display: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  margin-top: 10px;
+  background: lime;
+  border: none;
+  cursor: pointer;
+}

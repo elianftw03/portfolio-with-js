@@ -1,0 +1,235 @@
+:root {
+    --body-color: #E5EEFF;
+    --discoverbg-color: #020253;
+    --form-color: #8E097C;
+    --inputlabel-color: #0EE1DA;
+    --subtext-color: #F9F9F9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--body-color);
+    font-family: "Assistant", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: 20px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 15px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+
+.discover {
+    grid-area: 1 / 1 / 3 / 3;
+    background-color: var(--discoverbg-color);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+    width: 100%;
+}
+
+.discover h1 {
+    font-size: 3rem;
+    color: var(--inputlabel-color);
+    margin-bottom: 20px;
+}
+
+.discover p {
+    font-size: 1.25rem;
+    color: var(--subtext-color);
+    margin-top: 10px;
+}
+
+/* Image Grid */
+img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border: 1px solid black;
+}
+
+.img1 {
+    grid-area: 1 / 3 / 2 / 4;
+}
+
+.img2 {
+    grid-area: 1 / 4 / 2 / 5;
+}
+
+.img3 {
+    grid-area: 2 / 3 / 3 / 4;
+}
+
+.img4 {
+    grid-area: 2 / 4 / 3 / 5;
+}
+
+.img5 {
+    grid-area: 3 / 4 / 4 / 5;
+}
+
+.img6 {
+    grid-area: 3 / 3 / 4 / 4;
+}
+
+.img7 {
+    grid-area: 3 / 2 / 4 / 3;
+}
+
+.img8 {
+    grid-area: 3 / 1 / 4 / 2;
+}
+
+.img9 {
+    grid-area: 4 / 1 / 5 / 2;
+}
+
+.img10 {
+    grid-area: 4 / 2 / 5 / 3;
+}
+
+.img11 {
+    grid-area: 5 / 1 / 6 / 2;
+}
+
+.img12 {
+    grid-area: 5 / 2 / 6 / 3;
+}
+
+.img13 {
+    grid-area: 6 / 1 / 7 / 2;
+}
+
+.img14 {
+    grid-area: 6 / 2 / 7 / 3;
+}
+
+/* Form Section */
+.tellusmore {
+    grid-area: 4 / 3 / 7 / 5;
+    background-color: var(--form-color);
+    padding: 40px;
+    text-align: center;
+    width: 100%;
+}
+
+.tellusmore h2 {
+    font-size: 1.5rem;
+    color: var(--subtext-color);
+    margin-bottom: 15px;
+}
+
+.tellusmore p {
+    font-size: 1.2rem;
+    color: var(--subtext-color);
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.tellusmore form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+}
+
+.tellusmore label {
+    font-size: 1rem;
+    color: var(--inputlabel-color);
+    align-self: flex-start;
+}
+
+.tellusmore input[type="text"],
+.tellusmore input[type="email"],
+.tellusmore textarea {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px;
+    border: none;
+    border-bottom: 4px solid var(--inputlabel-color);
+    font-size: 1rem;
+    background-color: white;
+    outline: none;
+}
+
+.tellusmore textarea {
+    height: 120px;
+    resize: none;
+}
+
+.tellusmore input[type="button"] {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px;
+    font-size: 1.2rem;
+    background-color: var(--inputlabel-color);
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border: none;
+}
+
+.tellusmore input[type="button"]:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .discover {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .discover h1 {
+        font-size: 2.5rem;
+    }
+
+    .discover p {
+        font-size: 1rem;
+    }
+
+    img {
+        width: 100%;
+        max-width: 90%;
+        margin-bottom: 10px;
+    }
+
+    .tellusmore {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .tellusmore input[type="text"],
+    .tellusmore input[type="email"],
+    .tellusmore textarea,
+    .tellusmore input[type="button"] {
+        width: 100%;
+    }
+}
